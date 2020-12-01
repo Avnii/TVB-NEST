@@ -271,7 +271,8 @@ param_TR_tvb_to_nest={
     # 'seed':param_nest['master_seed']-3 # -3 because -1 and -2 is use by the simulation of TVB
     # 'nb_synapses' : param_nest_connection['nb_external_synapse'] # number of external synapses
     # 'init': path of the initialisation of the translation if not the run exploration will create it
-    # 'level_log': param_co_simulation['level_log']
+    # 'level_log': param_co_simulation['level_log'],
+    'function_select':2,
 }
 
 # Parameters for the module of saving by MPI

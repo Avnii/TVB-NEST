@@ -56,6 +56,7 @@ def send(logger,id_first_spike_detector,status_data,buffer_spike, comm):
                 for i in list_id:
                     shape += [spikes_times[i-id_first_spike_detector].shape[0]]
                     data += [spikes_times[i-id_first_spike_detector]]
+                    logger.info("id : "+str(i)+"spikes : "+str(data[-1]))
                 send_shape = np.array(np.concatenate(([np.sum(shape)],shape)), dtype='i')
                 # firstly send the size of the spikes train
                 comm.Send([send_shape, MPI.INT], dest=status_.Get_source(), tag=list_id[0])
@@ -179,9 +180,8 @@ if __name__ == "__main__":
     logger_master = create_logger(path_config, 'tvb_to_nest_master'+str(id_first_spike_detector), log_level)
 
     # variable for communication between thread
-    status_data=[0]
-    initialisation =np.load(param['init'])
-    buffer_spike=[initialisation]
+    status_data=[1]
+    buffer_spike=[None]
 
     ### Create Com objects for communications
     info = MPI.INFO_NULL
